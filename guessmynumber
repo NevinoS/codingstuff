@@ -2,6 +2,8 @@ import random
 
 num1 = random.randint(1, 10)
 
+tries = 0
+
 while True:
     while True:
         num = input("Guess my number, between 1 and 10: ").strip()
@@ -15,16 +17,14 @@ while True:
         except ValueError:
             print('Please enter a number between 1 and 10.')
             continue
-        if tries == 3:
-            print(f"You Failed! My number was {num1}!")
-            break
-
-tries = 0
 
     if num == num1:
         print("Correct! You guessed my number!")
         break
+    elif tries == 3:
+            print(f"You Failed! My number was {str(num1)}!")
+            break
     else:
         print("Incorrect! Keep trying!")
-        tries + 1
-        print(f"You have {tries} tries remaining.")
+        tries += 1
+        print(f"You have {str(tries)}/3 tries remaining.")
