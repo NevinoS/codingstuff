@@ -11,3 +11,7 @@ string_utf = string.encode()
 print('The encoded version is:', string_utf)
 
 # try catching a UnicodeDecodeError
+
+# Use bytes. decode() to decode a UTF-8-encoded byte string
+
+# Call bytes. decode(encoding) with encoding as "utf8" to decode a UTF-8-encoded byte string bytes .
