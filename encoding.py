@@ -9,3 +9,5 @@ string_utf = string.encode()
 
 # print result
 print('The encoded version is:', string_utf)
+
+# try catching a UnicodeDecodeError
