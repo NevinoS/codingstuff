@@ -3,12 +3,25 @@ import random as r
 from time import sleep
 from bs4 import BeautifulSoup
 
-classes = ['Mage', 'Berserker', 'Healer', 'Archer', 'Tank']
-prompt = '>>> '
+# Menu Stuff:
+
+info = 'Welcome to You Say Which Way. This game is about chance and choice. Your character will explore across the world of Arnis, and you will have to do your best to protect them on their journey.'
+'You will be tested upon morality, common knowledge and many other things. This game was created from an idea and nothing more. I, the creator [Billy], will personally see to it that you enjoy the game, thank you for playing!'
+
+credits = ['Game Developer: Billy. B', 'Contributers: Faisal. M [for criticising me], Mr. Phillips [for teaching me ofc lol]']
+credits = '\n'.join(credits)
+
+# Class select stuff:
+
+classes = ['Berserker', 'Mage', 'Healer', 'Archer', 'Tank']
 health = 0
 strength = 0
 intelligence = 0
 special = ['']
+
+# Idk
+
+prompt = '>>> '
 pagenum1 = r.randint(1,10)
 pagenum2 = r.randint(10,15)
 pagenum3 = r.randint(15,20)
@@ -28,116 +41,133 @@ def write(string):
         sleep(0.02)
     print()
 
-print()
-print()
-print('তততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততত')
-print('                                                                                               ')
-print('                                                                                               ')
-print('    ✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧              ✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧          ')
-print('                                                                                               ')
-print('                            Welcome to YouSayWhichWay!                              ')
-print('                                                                                               ')
-print('    ✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧              ✧･ﾟ: *✧･ﾟ:* 　　 *:･ﾟ✧*:･ﾟ✧          ')
-print('                                                                                               ')
-print('                                                                                               ')
-print('তততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততততত')
-print()
-print()
+def clear():
+    os.system('cls')
+
+def menu():
+    clear()
+    write('Welcome to You Say Which Way!')
+    sleep(2)
+    clear()
+    print('---', '𝐘𝐨𝐮 𝐒𝐚𝐲 𝐖𝐡𝐢𝐜𝐡 𝐖𝐚𝐲', '---')
+    print('1: Start')
+    print('2: Info')
+    print('3: Credits')
+    print('--------------------------------')
+
+menuStatus = True
+
+while menuStatus:
+    menu()
+    opt = input('Please enter an option [1-3]: ').strip()
+    try:
+        opt in ['1', '2', '3']
+    except ValueError:
+        clear()
+        menu()
+        continue
+    if opt == '1':
+        menuStatus = False
+        clear()
+        write('Great... Shall we begin?')
+        sleep(2)
+        clear()
+        break
+    elif opt == '2':
+        clear()
+        write(info)
+        sleep(10)
+        clear()
+        menu()
+    elif opt == '3':
+        write(credits)
+        sleep(10)
+        clear()
+        menu()
+    else:
+        clear()
+        sleep(0.5)
+        write('Please enter an option [1-3] as intructed!')
+        sleep(2)
+        clear()
+        continue
+
+
+
 
 
 sleep(2)
 write('Please enter your desired character name below.')
 name = input(prompt).strip()
-print()
 sleep(2)
+clear()
 write(f'Hello {name}!')
-print()
+sleep(1.5)
+clear()
+
+
+def classMenu():
+    sleep(0.5)
+    print('----', '𝐂𝐥𝐚𝐬𝐬 𝐒𝐞𝐥𝐞𝐜𝐭', '----')
+    print('1: Berserker')
+    print('2: Mage')
+    print('3: Healer')
+    print('4: Archer')
+    print('5: Tank')
+    print('--------------------------------------------------------------')
+    print(' >> TIP: Classes do not affect your performance in any way. << ')
+    print('--------------------------------------------------------------')
+
+def classSelect():
+    classSelectStatus = True
+    while classSelectStatus:
+        classMenu()
+        classopt = input('Please select your class [1-5]: ').strip()
+        try:
+            classopt in ['1', '2', '3', '4', '5']
+        except ValueError:
+            clear()
+            write('Error: Please select a class [1-5] as instructed!')
+            sleep(2.5)
+            clear()
+            classSelect()
+        if classopt == '1':
+            clear()
+            write(f'You have selected {classes[0]}!')
+            break
+        elif classopt == '2':
+            clear()
+            write(f'You have selected {classes[1]}!')
+            break
+        elif classopt == '3':
+            clear()
+            write(f'You have selected {classes[2]}!')
+            break
+        elif classopt == '4':
+            clear()
+            write(f'You have selected {classes[3]}!')
+            break
+        elif classopt == '5':
+            clear()
+            write(f'You have selected {classes[4]}!')
+            break
+        else:
+            sleep(0.5)
+            clear()
+            write('Error: Please select a class [1-5] as instructed!')
+            sleep(2)
+            clear()
+            classSelect()
+
+classSelect()
 
 
 
-randclass = classes[r.randint(0,4)]
-write(f'Generating random class...')
-sleep(2)
-print()
-write(f'Your generated class is {randclass}!')
-print()
-sleep(3)
-if randclass == 'Mage':
-    health += 85
-    strength += 25
-    intelligence += 125
-    special.append('MageStaff')
-    write(f'{randclass}:')
-    write('Health: 85')
-    write('Strength: 25')
-    write('Intelligence: 125')
-    write('Special: Mage Staff')
-    print()
-    sleep(6)
-elif randclass == 'Berserker':
-    health += 115
-    strength += 75
-    intelligence += 15
-    special.append('Me Smash Head')
-    write(f'{randclass}:')
-    write('Health: 115')
-    write('Strength: 75')
-    write('Intelligence: 15')
-    write('Special: Me Smash Head')                                      # It works!!! Now health can be depleted, or added to throughout the program, just like other player stats.
-    print()
-    sleep(6)
-elif randclass == 'Healer':
-    health += 105
-    strength += 35
-    intelligence += 65
-    special.append('Wish')
-    write(f'{randclass}:')
-    write('Health: 105')
-    write('Strength: 35')
-    write('Intelligence: 65')
-    write('Special: Wish')
-    print()
-    sleep(6)
-elif randclass == 'Archer':
-    health += 95
-    strength += 35
-    intelligence += 50
-    special.append('Extreme Focus')
-    write(f'{randclass}:')
-    write('Health: 95')
-    write('Strength: 35')
-    write('Intelligence: 50')
-    write('Special: Extreme Focus')
-    print()
-    sleep(6)
-else:
-    health += 185
-    strength += 45
-    intelligence += 25
-    special.append('Fortify')
-    write(f'{randclass}:')
-    write('Health: 185')
-    write('Strength: 45')
-    write('Intelligence: 25')
-    write('Special: Fortify')
-    print()
-    sleep(6)
-
-print()
-write('Here is your playercard!')
-print()
-print('Player Info:')
-print(f'Name: {name}')
-print(f'Class: {randclass}')
-print(f'Current Health:  {health}')
-print(f'Current Strength: {strength}')
-print(f'Current Intelligence: {intelligence}')
-print()
-sleep(4)
-write(f'Here we start our journey {name}. YouSayWhichWay is a combination of chance and choice. Your character explores for you, but you have to deal with what happens to that character on their way. Your journey begins here. You character finds a book. Please turn to page {pagenum1} of the YouSayWhichWay manual.')
-print()
 
 sleep(7)
+
+correctAnsCount = 0
+
 if pagenum1 == 1:
     write(f'You have turned to page {pagenum1}! Enter your solution to the page below.')
     while True:
@@ -270,13 +300,3 @@ else:
                 break
 
 f = open('stats.txt', 'a')
-f.write('--------------------------------------\n')
-f.write('Player Info:\n')
-f.write(f'Name: {name}\n')
-f.write(f'Class: {randclass}\n')
-f.write(f'Final Health:  {health}\n')
-f.write(f'Final Strength: {strength}\n')
-f.write(f'Final Intelligence: {intelligence}\n')
-f.write('-\n')
-f.write(f'Date completed: {date}.\n')
-f.write('--------------------------------------\n')
